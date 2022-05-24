@@ -1,5 +1,5 @@
 [package]
-name        = "rs_wavefront_obj_parser"
+name        = "wavefront_obj"
 version     = "0.0.1"
 edition     = "2021"
 authors     = [ "Alicia <smushybusiness@gmail.com>" ]
