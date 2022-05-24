@@ -1,0 +1,12 @@
+[package]
+name        = "rs_wavefront_obj_parser"
+version     = "0.0.1"
+edition     = "2021"
+authors     = [ "Alicia <smushybusiness@gmail.com>" ]
+description = "A Wavefront OBJ Parser for my personal projects"
+readme      = "README.md"
+homepage    = "https://github.com/smushy64/rs_wavefront_obj_parser"
+repository  = "https://github.com/smushy64/rs_wavefront_obj_parser"
+license     = "MIT"
+keywords    = [ "graphics" ]
+categories  = [ "data-structures", "game-development" ]
