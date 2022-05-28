@@ -125,7 +125,7 @@ pub fn parse_obj( src:String ) -> Result<Vec<MeshOBJ>, Error> {
                     let data = match symbol.parse::<f32>() {
                         Ok(f) => f,
                         Err(e) => return Err(
-                            Error::ParseFloat( format!("Parse Float Error: {}", e) )
+                            Error::ParseFloat( format!("{}", e) )
                         ),
                     };
     
@@ -183,7 +183,7 @@ pub fn parse_obj( src:String ) -> Result<Vec<MeshOBJ>, Error> {
                             let data = match sub_symbol.parse::<u32>() {
                                 Ok(u) => u,
                                 Err(e) => return Err(
-                                    Error::ParseInt( format!( "Parse Int Error: {}", e ) )
+                                    Error::ParseInt( format!( "{}", e ) )
                                 ),
                             };
                             result.push( data );
@@ -243,18 +243,19 @@ pub enum Error {
 }
 
 impl Error {
-    pub fn msg(&self) -> String {
+    pub fn msg(&self) -> &str {
         match self {
-            Error::ParseFloat(s) => s.clone(),
-            Error::ParseInt(s)   => s.clone(),
-            Error::PositionColorFormat    =>
-                format!("Formatting Error: Positions/Vertex Colors are not properly formatted!"),
+            Error::ParseFloat(s) |
+            Error::ParseInt  (s) => s,
+
+            Error::PositionColorFormat =>
+                "Positions/Vertex Colors are not properly formatted!",
             Error::UVFormat =>
-                format!("Formatting Error: UVs are not properly formatted!"),
+                "UVs are not properly formatted!",
             Error::NormalFormat => 
-                format!("Formatting Error: Normals are not properly formatted!"),
+                "Normals are not properly formatted!",
             Error::FaceIndexFormat => 
-                format!("Formatting Error: Face Indeces are not properly formatted!"),
+                "Face Indeces are not properly formatted!",
                 
         }
     }
@@ -262,12 +263,12 @@ impl Error {
 
 impl core::fmt::Display for Error {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!( f, "{}", self.msg() )
+        write!( f, "Wavefront OBJ Parser: {}", self.msg() )
     }
 }
 
-const COMMENT:char  = '#';
-const POSITION:&str = "v";
-const UV:&str       = "vt";
-const NORMAL:&str   = "vn";
-const INDEX:&str    = "f";
+const COMMENT:char  = '#'  ;
+const POSITION:&str = "v"  ;
+const UV:&str       = "vt" ;
+const NORMAL:&str   = "vn" ;
+const INDEX:&str    = "f"  ;
